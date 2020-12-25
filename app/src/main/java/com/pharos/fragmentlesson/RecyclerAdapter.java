@@ -38,6 +38,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         holder.onBind(list.get(position), position);
 
     }
+//    public void addModel(ArrayList<Destination> list){
+//        this.list= list;
+//        notifyDataSetChanged();
+//    }
 
     @Override
     public int getItemCount() {

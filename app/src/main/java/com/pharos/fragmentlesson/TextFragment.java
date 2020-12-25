@@ -1,12 +1,17 @@
 package com.pharos.fragmentlesson;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +26,7 @@ public class TextFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_PARAM3 = "param3";
+    public static final String KEY = "edKey";
 
 
 
@@ -28,10 +34,15 @@ public class TextFragment extends Fragment {
     private String mParam2;
     private int mParam3;
 
+    private EditText editText;
+    private Button btnSend;
+
     private int savedID;
 
-    private TextView txtTitle;
-    private TextView txtSubTitle;
+    private Button btnSkip;
+    private Button btnNext;
+    private ViewPager pager;
+
     private ImageView imageId;
 
     public TextFragment() {
@@ -63,19 +74,37 @@ public class TextFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_text, container, false);
-        txtTitle = view.findViewById(R.id.txtTitle);
-        txtSubTitle = view.findViewById(R.id.txtSubTitle);
+        btnNext = view.findViewById(R.id.btnNext);
+        btnSkip = view.findViewById(R.id.btnSkip);
+        btnSend = view.findViewById(R.id.btnSend);
+editText = view.findViewById(R.id.editText);
+        pager = getActivity().findViewById(R.id.viewPager);
         imageId = view.findViewById(R.id.imageViewRecycler);
-        txtTitle.setText(mParam1);
-        txtSubTitle.setText(mParam2);
-        imageId.setImageResource(mParam3);
-        savedID = mParam3;
-        return view;
-    }
 
-    void displayDetails(String title, String subTitle, int imageResourceId){
-        txtTitle.setText(title);
-        txtSubTitle.setText(subTitle);
-        imageId.setImageResource(imageResourceId);
+        btnSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DetailsActivity activity = (DetailsActivity) getActivity();
+                activity.showMain();
+            }
+        });
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pager.setCurrentItem(1);
+            }
+        });
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeFragment changeFragment = new ChangeFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("text", editText.getText().toString());
+                changeFragment.setArguments(bundle);
+
+                
+            }
+        });
+        return view;
     }
 }

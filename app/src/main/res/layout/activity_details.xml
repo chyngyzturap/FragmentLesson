@@ -6,11 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity">
 
-    <fragment
-        android:id="@+id/fragmentText"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_text"
-        android:name="com.pharos.fragmentlesson.TextFragment"/>
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

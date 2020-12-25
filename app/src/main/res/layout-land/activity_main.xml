@@ -20,4 +20,6 @@
         android:name="com.pharos.fragmentlesson.TextFragment"
         tools:layout="@layout/fragment_text"/>
 
+
+
 </LinearLayout>

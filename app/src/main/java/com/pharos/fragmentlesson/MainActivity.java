@@ -26,15 +26,20 @@ public  static final String KEY3 = "imgKey";
         setContentView(R.layout.activity_main);
 
         fragmentView = findViewById(R.id.fragment_second);
+
         if (fragmentView != null){
             mViewFragment = true;
         }
         if (mViewFragment){
             fragmentManager = getSupportFragmentManager();
             transaction = fragmentManager.beginTransaction();
-            transaction.replace(R.id.fragment_first, new ChangeFragment());
+            //transaction.replace(R.id.fragment_first, new ChangeFragment());
             transaction.commit();
         }
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        //transaction.add(R.id.fragment_first_main, new ChangeFragment());
+        transaction.commit();
     }
 
     public void displayDetails(String title, String subTitle, int imageResourceId){
